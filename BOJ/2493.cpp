@@ -4,21 +4,20 @@ using namespace std;
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int n;
-    cin >> n;
-    int a[n+1];
-    for(int i=1;i<n+1;i++){
-        cin >> a[i];
-    }
-    for(int i=1;i<n+1;i++){
-        int b = i,cnt = 0;
-        while(cnt){
-            if(a[i] < a[b-1]){
-                cnt = 1;
-                cout << b;
-            }
-            else b--;
+    stack <pair<int,int>> S;
+    
+    int N;
+    cin >> N;
+
+    S.push({100000001, 0});
+
+    for(int i=1;i<=N;i++){
+        int h;
+        cin >> h;
+        while (S.top().first < h){
+            S.pop();
         }
-        cout << 0;
+        cout << S.top().second << " ";
+        S.push({h, i});
     }
 }
